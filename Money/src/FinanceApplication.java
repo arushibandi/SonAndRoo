@@ -8,7 +8,7 @@ public class FinanceApplication extends JFrame {
 	public FinanceApplication()
 	{
 		frame = new JFrame();
-		frame.setSize(425, 500);
+		frame.setSize(400, 600);
 		FinanceBoard board = new FinanceBoard();
 		frame.add(board);
 		frame.setVisible(true);
