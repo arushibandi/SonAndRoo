@@ -1,10 +1,13 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -17,6 +20,9 @@ import javax.swing.JTextField;
 import java.io.File;
 import java.io.IOException;
 import java.lang.Object;
+import java.nio.channels.SelectableChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 
 
 public class FinanceBoard extends JPanel implements ActionListener {
@@ -34,10 +40,12 @@ public class FinanceBoard extends JPanel implements ActionListener {
 	private JOptionPane removeMoneyPopup;
 	private ActionListener removeMoneyAction;
 	
+	//citymap image
+	private File citymap;
+	private MouseListener citymapAction;
+	
 	private Color lightGreen;
-	
 
-	
 	KeyListener listener = new KeyListener() {
 		
 		@Override
@@ -77,6 +85,8 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		removeMoney.setLocation(200,500);
 		removeMoneyPopup = new JOptionPane();
 		
+		//citymap
+		citymap = new File("/Users/arushibandi/Desktop/back.jpg");
 		
 		//KeyListeners
 		addKeyListener(listener);
@@ -110,7 +120,39 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		};
 		
 		removeMoney.addActionListener(removeMoneyAction);		
-	
+		
+		citymapAction = new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 	
 	@Override
@@ -124,9 +166,9 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		BufferedImage temp = null;
 		try {
 			temp = ImageIO.read(new File("/Users/arushibandi/Desktop/back.jpg"));
-		} catch (IOException e) {
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		
 		super.paint(g);
