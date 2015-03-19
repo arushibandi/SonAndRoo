@@ -23,10 +23,20 @@ public class FinanceBoard extends JPanel implements ActionListener {
 
 	private boolean gameOver;
 	private User gameUser;
+
+	//addMoney
 	private JButton  addMoneyToBank;
 	private JOptionPane addMoneyPopup;
-	
 	private ActionListener addMoneyToBankAction;
+	
+	//removeMoney
+	private JButton removeMoney;
+	private JOptionPane removeMoneyPopup;
+	private ActionListener removeMoneyAction;
+	
+	private Color lightGreen;
+	
+
 	
 	KeyListener listener = new KeyListener() {
 		
@@ -50,15 +60,28 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		setFocusable(true);
 		gameOver = false;
 		
+		//colors
+		lightGreen = new Color(206,240,216);
+		
 		gameUser = new User(0);
+		
+		//addMoney
 		addMoneyToBank = new JButton("Add To Bank");
 		this.add(addMoneyToBank);
 		addMoneyToBank.setLocation(0, 500);
-		
-		addKeyListener(listener);
-
 		addMoneyPopup = new JOptionPane();
 		
+		//removeMoney
+		removeMoney = new JButton("Remove Money");
+		this.add(removeMoney);
+		removeMoney.setLocation(200,500);
+		removeMoneyPopup = new JOptionPane();
+		
+		
+		//KeyListeners
+		addKeyListener(listener);
+		
+		//addMoney Action Listener
 		addMoneyToBankAction = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent event) {
@@ -66,13 +89,27 @@ public class FinanceBoard extends JPanel implements ActionListener {
 				String userResponse = addMoneyPopup.showInputDialog("How much money are you adding?");
 				
 				gameUser.addToTotalGain(Double.parseDouble(userResponse));
-				System.out.println(gameUser.getTotalGain());
+				gameUser.updateInBank();
 			}
 		};
 		
 		addMoneyToBank.addActionListener(addMoneyToBankAction);
 		
+		//removeMoney Action Listener
+		removeMoneyAction = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String userResponse = removeMoneyPopup.showInputDialog("How much money did you spend?");
+				gameUser.addToTotalSpent(Double.parseDouble(userResponse));
+				gameUser.updateInBank();
+				
+			}
+			
+		};
 		
+		removeMoney.addActionListener(removeMoneyAction);		
 	
 	}
 	
@@ -93,11 +130,12 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		}
 		
 		super.paint(g);
+		super.setBackground(lightGreen);
 		g.drawImage(temp, 0, 50, null);
 		addMoneyToBank.setLocation(0, 525);
 		addMoneyToBank.setSize(100, 50);
-		g.setColor(Color.green);
-		g.fillRect(5, 5, 390, 40);
+		removeMoney.setLocation(250, 525);
+		removeMoney.setSize(150, 50);
 		g.setColor(Color.black);
 		g.drawString("$1.01: learn finance fast!", 10, 30);
 	}

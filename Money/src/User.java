@@ -7,9 +7,11 @@ public class User {
 	private double spentOnFood;
 	private double spentOnFun;
 	private double moneyInBank;
+	private double originalBalance;
 	
 	public User(double startingAmount)
 	{
+		originalBalance = 0;
 		totalSpent = 0;
 		totalGain = 0;
 		spentOnClothes = 0;
@@ -50,7 +52,8 @@ public class User {
 	
 	public void updateInBank()
 	{
-		moneyInBank = moneyInBank - totalSpent + totalGain;
+		moneyInBank = originalBalance - totalSpent + totalGain;
+		System.out.println("" + moneyInBank);
 	}
 
 }
