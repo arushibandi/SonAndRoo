@@ -86,7 +86,8 @@ public class FinanceBoard extends JPanel implements ActionListener {
 		removeMoneyPopup = new JOptionPane();
 		
 		//citymap
-		citymap = new File("/Users/arushibandi/Desktop/back.jpg");
+		citymap = new File("/Users/arushibandi/Desktop/citymap.png");
+	
 		
 		//KeyListeners
 		addKeyListener(listener);
@@ -165,7 +166,7 @@ public class FinanceBoard extends JPanel implements ActionListener {
 	{	
 		BufferedImage temp = null;
 		try {
-			temp = ImageIO.read(new File("/Users/arushibandi/Desktop/back.jpg"));
+			temp = ImageIO.read(new File("/Users/arushibandi/Desktop/citymap.png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

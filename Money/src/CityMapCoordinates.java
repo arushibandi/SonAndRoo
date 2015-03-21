@@ -10,5 +10,7 @@ public class CityMapCoordinates {
 		return null;
 	}
 	
-	
+	public void placeCoordinates() {
+		
+	}
 }

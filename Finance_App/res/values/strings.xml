@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Finance_App</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="img_citymap">img_citymap</string>
+    <string name="add_money">Add Money</string>
+    <string name="spend_money">Spend Money</string>
+
+</resources>
