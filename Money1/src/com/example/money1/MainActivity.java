@@ -15,8 +15,8 @@ import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
 	
-	public void addMoney() {
-		
+	public void addMoney(View view ) {
+		System.out.println("sdfsd");
 	}
 	
 	@Override
