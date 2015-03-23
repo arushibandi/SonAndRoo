@@ -17,6 +17,15 @@ public class MainActivity extends ActionBarActivity {
 	
 	private String userText;
 	
+	//money variables
+	private double totalSpent;
+	private double totalGain;
+	private double spentOnClothes;
+	private double spentOnFood;
+	private double spentOnFun;
+	private double moneyInBank;
+	private double originalBalance;
+	
 	public void addMoney(View view ) {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -45,8 +54,8 @@ public class MainActivity extends ActionBarActivity {
 
 		builder.show();
 		
-		User.addToTotalGain(Double.parseDouble(userText));
-		User.updateInBank();
+		System.out.println(userText);
+		
 	}
 	
 	@Override
@@ -73,4 +82,41 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void addToTotalSpent(double addition)
+	{
+		totalSpent = totalSpent + addition;
+	}
+	
+	public void addToTotalGain(double addition)
+	{
+		totalGain = totalGain + addition;
+	}
+	
+	public double getTotalGain()
+	{
+		return totalGain;
+	}
+	
+	public void addToClothes(double addition) 
+	{
+		spentOnClothes = spentOnClothes + addition;
+	}
+	
+	public void addToFood(double addition)
+	{
+		spentOnFood = spentOnFood + addition;
+	}
+	
+	public void addToFun(double addition)
+	{
+		spentOnFun = spentOnFun + addition;
+	}
+	
+	public void updateInBank()
+	{
+		moneyInBank = originalBalance - totalSpent + totalGain;
+		System.out.println("" + moneyInBank);
+	}
+
 }
