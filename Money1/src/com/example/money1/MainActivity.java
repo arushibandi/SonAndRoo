@@ -15,8 +15,38 @@ import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
 	
+	private String userText;
+	
 	public void addMoney(View view ) {
-		System.out.println("sdfsd");
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("How much money would you like to add to your account?");
+
+		// Set up the input
+		final EditText input = new EditText(this);
+		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		builder.setView(input);
+
+		// Set up the buttons
+		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		    	userText = input.getText().toString();
+		    }
+		});
+		
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        dialog.cancel();
+		    }
+		});
+
+		builder.show();
+		
+		User.addToTotalGain(Double.parseDouble(userText));
+		User.updateInBank();
 	}
 	
 	@Override
@@ -25,14 +55,14 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 	}
 
-	@Override
+
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
-	@Override
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
