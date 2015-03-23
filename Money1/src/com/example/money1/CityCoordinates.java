@@ -5,25 +5,25 @@ public class CityCoordinates {
 	public static String getLocation(double x, double y) {
 		
 		if (isBetween(950,1180,x) && isBetween(0,425,y)) 
-			return "zoo";
+			return "at the zoo";
 		else if (isBetween(630,860,x) && isBetween(0,140,y))
-			return "football game";
+			return "at football games";
 		else if((isBetween(0,560,x) && isBetween(0,115,y)) || (isBetween(0,275,x) && isBetween(0,415,y)))
-			return "park";
+			return "at the park";
 		else if(isBetween(630,860,x) && isBetween(180,430,y))
-			return "school";
+			return "at school";
 		else if(isBetween(340,520,x) && isBetween(215,400,y))
-			return "office";
+			return "at the office & work";
 		else if(isBetween(330,480,x) && isBetween(470,645,y))
-			return "carnival";
+			return "on the carnival & fun";
 		else if(isBetween(620,875,x) && isBetween(480,650,y))
-			return "cafe & restaurant";
+			return "at the cafe & restaurant";
 		else if(isBetween(950,1195,x) && isBetween(480,650,y))
-			return "food & groceries";
+			return "on food & groceries";
 		else if(isBetween(430,570,x) && isBetween(650,750,y))
-			return "ice cream shop";
+			return "at the ice cream shop";
 		else if(isBetween(380,570,x) && isBetween(730,875,y))
-			return "gas";
+			return "on gas";
 		else
 			return "other";
 		

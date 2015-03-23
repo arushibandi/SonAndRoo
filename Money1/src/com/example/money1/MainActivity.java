@@ -122,11 +122,17 @@ public class MainActivity extends ActionBarActivity {
 	            System.out.println("Touch coordinates : " +
 	                        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
 	            System.out.println("Spent at " + CityCoordinates.getLocation(event.getX(), event.getY()));
+	            
+	            AlertDialog.Builder builder = new AlertDialog.Builder(view);
+	    		builder.setMessage("You have spent this much money " +  CityCoordinates.getLocation(event.getX(), event.getY()));
+	    	
+	            
 	            return true;
 	        }
 		});
 		
 	}
+		
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
