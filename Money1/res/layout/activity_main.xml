@@ -16,7 +16,9 @@
         android:contentDescription="@string/citymap"
         android:minHeight="440dp"
         android:minWidth="650dp"
-        android:src="@drawable/citymap" />
+        android:src="@drawable/citymap"
+        android:clickable="true"
+        android:onClick="showLocSpent" />
 
     <Button
         android:id="@+id/btnSpend"

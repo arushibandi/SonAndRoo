@@ -13,10 +13,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -107,6 +109,23 @@ public class MainActivity extends ActionBarActivity {
 	    TextView textView = (TextView) findViewById(R.id.txtBalance);
 	    textView.setText(String.valueOf(df.format(moneyInBank)));
 
+	}
+	
+	
+	
+	public void showLocSpent(View view) {
+		ImageView img = (ImageView) findViewById(R.id.citymap);
+		
+		img.setOnTouchListener(new View.OnTouchListener() {
+		
+			public boolean onTouch(View v, MotionEvent event) {
+	            System.out.println("Touch coordinates : " +
+	                        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+	            System.out.println("Spent at " + CityCoordinates.getLocation(event.getX(), event.getY()));
+	            return true;
+	        }
+		});
+		
 	}
 	
 	@Override
