@@ -1,21 +1,25 @@
 package com.example.money1;
 
+import java.text.DecimalFormat;
+
 import android.*;
+import android.widget.TextView;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
 import android.app.AlertDialog;
 import android.app.usage.UsageEvents.Event;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
-	
-	private String userText;
+
 	
 	//money variables
 	private double totalSpent;
@@ -25,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
 	private double spentOnFun;
 	private double moneyInBank;
 	private double originalBalance;
+	
+	//Method executed when button 'Add Money' is clicked
 	
 	public void addMoney(View view ) {
 		
@@ -41,7 +47,10 @@ public class MainActivity extends ActionBarActivity {
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
 		    @Override
 		    public void onClick(DialogInterface dialog, int which) {
-		    	userText = input.getText().toString();
+		    	String userText = input.getText().toString();
+		    	System.out.println("pd: " + Double.parseDouble(userText));
+		    	addToTotalGain(Double.parseDouble(userText));
+		    	updateInBank();
 		    }
 		});
 		
@@ -54,14 +63,57 @@ public class MainActivity extends ActionBarActivity {
 
 		builder.show();
 		
-		System.out.println(userText);
+	}
+	
+	//Method executed when button 'Spend Money' is clicked
+	
+	public void spendMoney(View view) {
 		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("How much money would you like to add to your account?");
+
+		// Set up the input
+		final EditText input = new EditText(this);
+		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		builder.setView(input);
+
+		// Set up the buttons
+		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		    	String userText = input.getText().toString();
+		    	System.out.println("pd: " + Double.parseDouble(userText));
+		    	addToTotalSpent(Double.parseDouble(userText));
+		    	updateInBank();
+		    }
+		});
+		
+		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        dialog.cancel();
+		    }
+		});
+
+		builder.show();
+		
+	}
+	
+	//Displays Account Balance
+	public void setBalance() {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtBalance);
+	    textView.setText(String.valueOf(df.format(moneyInBank)));
+
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 	}
 
 
@@ -116,7 +168,8 @@ public class MainActivity extends ActionBarActivity {
 	public void updateInBank()
 	{
 		moneyInBank = originalBalance - totalSpent + totalGain;
-		System.out.println("" + moneyInBank);
+		System.out.println("MiB" + moneyInBank);
+		setBalance();
 	}
 
 }

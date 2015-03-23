@@ -9,5 +9,6 @@
     <string name="add_money">Add Money</string>
     <string name="btnspend">btnSpend</string>
     <string name="spend_money">Spend Money</string>
+    <string name="account_balance">Account Balance</string>
 
 </resources>

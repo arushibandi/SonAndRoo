@@ -348,7 +348,7 @@ int id action_menu_presenter 0x7f090006
 int id action_mode_bar 0x7f09002e
 int id action_mode_bar_stub 0x7f09002d
 int id action_mode_close_button 0x7f090020
-int id action_settings 0x7f090042
+int id action_settings 0x7f090043
 int id activity_chooser_view_content 0x7f090021
 int id always 0x7f090014
 int id beginning 0x7f09001b
@@ -398,6 +398,7 @@ int id split_action_bar 0x7f090004
 int id submit_area 0x7f09003c
 int id tabMode 0x7f09000c
 int id title 0x7f090027
+int id txtBalance 0x7f090042
 int id up 0x7f090001
 int id useLogo 0x7f090013
 int id withText 0x7f090018
@@ -445,6 +446,7 @@ int string abc_searchview_description_voice 0x7f0a000b
 int string abc_shareactionprovider_share_with 0x7f0a000f
 int string abc_shareactionprovider_share_with_application 0x7f0a000e
 int string abc_toolbar_collapse_description 0x7f0a0004
+int string account_balance 0x7f0a0018
 int string action_settings 0x7f0a0012
 int string add_money 0x7f0a0015
 int string app_name 0x7f0a0010
