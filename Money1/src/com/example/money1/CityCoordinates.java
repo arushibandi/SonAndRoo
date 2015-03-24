@@ -7,7 +7,7 @@ public class CityCoordinates {
 		if (isBetween(950,1180,x) && isBetween(0,425,y)) 
 			return "at the zoo";
 		else if (isBetween(630,860,x) && isBetween(0,140,y))
-			return "at football games";
+			return "on sports";
 		else if((isBetween(0,560,x) && isBetween(0,115,y)) || (isBetween(0,275,x) && isBetween(0,415,y)))
 			return "at the park";
 		else if(isBetween(630,860,x) && isBetween(180,430,y))
@@ -24,6 +24,8 @@ public class CityCoordinates {
 			return "at the ice cream shop";
 		else if(isBetween(380,570,x) && isBetween(730,875,y))
 			return "on gas";
+		else if(isBetween(0, 275, x) && isBetween(500, 875, y))
+			return "on clothes";
 		else
 			return "other";
 		

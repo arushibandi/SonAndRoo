@@ -7,6 +7,8 @@ import android.widget.TextView;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.usage.UsageEvents.Event;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,11 +28,33 @@ public class MainActivity extends ActionBarActivity {
 	//money variables
 	private double totalSpent;
 	private double totalGain;
+	private double moneyInBank;
+	private double originalBalance;
 	private double spentOnClothes;
 	private double spentOnFood;
 	private double spentOnFun;
-	private double moneyInBank;
-	private double originalBalance;
+	private double spentOnGas;
+	private double spentAtPark;
+	private double spentOnSports;
+	private double spentAtCafe;
+	private double spentAtIceCream;
+	private double spentAtOffice;
+	private double spentAtZoo;
+	private double spentAtSchool;
+	private double spentOnOther;
+	
+	//used in the citymap image
+	private double tapX;
+	private double tapY;
+	
+	//the user's input
+	private String spentInput;
+	
+	//the user interface temporary variables
+	private View v;
+	private Context c;
+	private double tempAddition;
+	private Builder tempBuilder;
 	
 	//Method executed when button 'Add Money' is clicked
 	
@@ -71,6 +95,9 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void spendMoney(View view) {
 		
+		v = view;
+		c = this;
+		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("How much money would you like to add to your account?");
 
@@ -84,10 +111,24 @@ public class MainActivity extends ActionBarActivity {
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
 		    @Override
 		    public void onClick(DialogInterface dialog, int which) {
-		    	String userText = input.getText().toString();
-		    	System.out.println("pd: " + Double.parseDouble(userText));
-		    	addToTotalSpent(Double.parseDouble(userText));
+		    	spentInput = input.getText().toString();
+		    	System.out.println("pd: " + Double.parseDouble(spentInput));
+		    	addToTotalSpent(Double.parseDouble(spentInput));
 		    	updateInBank();
+		    	
+		    	AlertDialog.Builder placeBuild = new AlertDialog.Builder(c);
+				placeBuild.setMessage("Select the place on the map where you are spending the money.");
+				
+				placeBuild.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
+				    @Override
+				    public void onClick(DialogInterface dialog, int which) {
+				    	
+				    	showLocSpent(v, Double.parseDouble(spentInput));
+				    }
+				});
+				
+				placeBuild.show();
+		    	
 		    }
 		});
 		
@@ -97,9 +138,9 @@ public class MainActivity extends ActionBarActivity {
 		        dialog.cancel();
 		    }
 		});
-
+	
 		builder.show();
-		
+	
 	}
 	
 	//Displays Account Balance
@@ -111,9 +152,11 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 	
-	
-	
-	public void showLocSpent(View view) {
+	public void showLocSpent(View view, double addition) {
+		
+		c = this;
+		tempAddition = addition;
+		
 		ImageView img = (ImageView) findViewById(R.id.citymap);
 		
 		img.setOnTouchListener(new View.OnTouchListener() {
@@ -123,16 +166,33 @@ public class MainActivity extends ActionBarActivity {
 	                        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
 	            System.out.println("Spent at " + CityCoordinates.getLocation(event.getX(), event.getY()));
 	            
-	            AlertDialog.Builder builder = new AlertDialog.Builder(view);
-	    		builder.setMessage("You have spent this much money " +  CityCoordinates.getLocation(event.getX(), event.getY()));
-	    	
 	            
-	            return true;
-	        }
+	            tapX = event.getX();
+	            tapY = event.getY();
+	            
+	            DecimalFormat df = new DecimalFormat("##.00");
+	    		tempBuilder = new AlertDialog.Builder(c);
+	    		tempBuilder.setMessage("You have spent this much money " +  CityCoordinates.getLocation(tapX, tapY) + ": $" + df.format(chooseLocation(CityCoordinates.getLocation(tapX, tapY), tempAddition)));
+	    		
+	    		tempBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
+	    		    @Override
+	    		    public void onClick(DialogInterface dialog, int which) {
+	    		    	
+	    		    }
+	    		});
+	    		
+	    		tempBuilder.show();
+	    		
+	    		return true;
+	            
+			
+			}
 		});
 		
-	}
 		
+		
+	}	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +220,37 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	public double chooseLocation(String name, double addition) {
+		
+		switch(name) {
+			case "at the zoo":
+				return addToZoo(addition);
+			case "on sports":
+				return addToSports(addition);
+			case "at the park":
+				return addToPark(addition);
+			case "at school":
+				return addAtSchool(addition);
+			case "at the office & work":
+				return addToOffice(addition);
+			case "on the carnival & fun":
+				return addToFun(addition);
+			case "at the cafe & restaurant":
+				return addToCafe(addition);
+			case "on food & groceries":
+				return addToFood(addition);
+			case "at the ice cream shop":
+				return addToIceCream(addition);
+			case "on gas":
+				return addToGas(addition);
+			case "on clothes":
+				return addToClothes(addition);
+		}
+		
+		return addition;
+		
+	}
+	
 	public void addToTotalSpent(double addition)
 	{
 		totalSpent = totalSpent + addition;
@@ -175,19 +266,76 @@ public class MainActivity extends ActionBarActivity {
 		return totalGain;
 	}
 	
-	public void addToClothes(double addition) 
+	public double addToClothes(double addition) 
 	{
 		spentOnClothes = spentOnClothes + addition;
+		return spentOnClothes;
 	}
 	
-	public void addToFood(double addition)
+	public double addToFood(double addition)
 	{
 		spentOnFood = spentOnFood + addition;
+		return spentOnFood;
 	}
 	
-	public void addToFun(double addition)
+	public double addToFun(double addition)
 	{
 		spentOnFun = spentOnFun + addition;
+		return spentOnFun;
+	}
+	
+	public double addToGas(double addition)
+	{
+		spentOnGas = spentOnGas + addition;
+		return spentOnGas;
+	}
+	
+	public double addToPark(double addition)
+	{
+		spentAtPark = spentAtPark + addition;
+		return spentAtPark;
+	}
+	
+	public double addToSports(double addition)
+	{
+		spentOnSports = spentOnSports + addition;
+		return spentOnSports;
+	}
+	
+	public double addToCafe(double addition)
+	{
+		spentAtCafe = spentAtCafe + addition;
+		return spentAtCafe;
+	}
+	
+	public double addToIceCream(double addition)
+	{
+		spentAtIceCream = spentAtIceCream + addition;
+		return spentAtIceCream;
+	}
+	
+	public double addToOffice(double addition)
+	{
+		spentAtOffice = spentAtOffice + addition;
+		return spentAtOffice;
+	}
+	
+	public double addToZoo(double addition)
+	{
+		spentAtZoo = spentAtZoo + addition;
+		return spentAtZoo;
+	}
+	
+	public double addAtSchool(double addition)
+	{
+		spentAtSchool = spentAtSchool + addition;
+		return spentAtSchool;
+	}
+	
+	public double addToOther(double addition)
+	{
+		spentOnOther = spentOnOther + addition;
+		return spentOnOther;
 	}
 	
 	public void updateInBank()
