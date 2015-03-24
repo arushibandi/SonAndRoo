@@ -152,6 +152,20 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 	
+	public void imgTapped(View view) {
+		ImageView img = (ImageView) findViewById(R.id.citymap);
+		img.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				showLocSpent(v, 0);
+				return true;
+			}
+			
+		});
+	}
+	
 	public void showLocSpent(View view, double addition) {
 		
 		c = this;
@@ -171,27 +185,31 @@ public class MainActivity extends ActionBarActivity {
 	            tapY = event.getY();
 	            
 	            DecimalFormat df = new DecimalFormat("##.00");
-	    		tempBuilder = new AlertDialog.Builder(c);
-	    		tempBuilder.setMessage("You have spent this much money " +  CityCoordinates.getLocation(tapX, tapY) + ": $" + df.format(chooseLocation(CityCoordinates.getLocation(tapX, tapY), tempAddition)));
+	    		Builder builder = new AlertDialog.Builder(c);
+	    		builder.setMessage("You have spent this much money " +  CityCoordinates.getLocation(tapX, tapY) + ": $" + df.format(chooseLocation(CityCoordinates.getLocation(tapX, tapY), tempAddition)));
 	    		
-	    		tempBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
-	    		    @Override
-	    		    public void onClick(DialogInterface dialog, int which) {
-	    		    	
-	    		    }
+	    		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							
+					} 
+	 
+	    		    
 	    		});
 	    		
-	    		tempBuilder.show();
-	    		
-	    		return true;
+				builder.show();
+
+	    		return false;
 	            
 			
 			}
+
 		});
 		
-		
-		
 	}	
+	
 	
 	
 	@Override
