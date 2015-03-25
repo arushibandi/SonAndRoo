@@ -1,7 +1,6 @@
 package com.example.money1;
 
 import java.text.DecimalFormat;
-
 import android.*;
 import android.widget.TextView;
 import android.support.v7.app.ActionBarActivity;
@@ -21,6 +20,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import com.example.money101.R;
 
 public class MainActivity extends ActionBarActivity {
 
