@@ -305,22 +305,28 @@ public class MainActivity extends ActionBarActivity {
 		
 		switch(name) {
 			case "on sports":
+				setSportsBalance();
 				return addToSports(addition);
 			case "at the park":
+				setParkBalance();
 				return addToPark(addition);
 			case "at school":
+				setSchoolBalance();
 				return addAtSchool(addition);
 			case "at the office & work":
+				setWorkBalance();
 				return addToOffice(addition);
 			case "on the carnival & fun":
+				setFunBalance();
 				return addToFun(addition);
 			case "at the cafe & restaurant":
-				
+				setCafeBalance();
 				return addToCafe(addition);
 			case "on food & groceries":
 				setFoodBalance();
 				return addToFood(addition);
 			case "at the ice cream shop":
+				setIceCreamBalance();
 				return addToIceCream(addition);
 			case "on gas":
 				setGasBalance();
