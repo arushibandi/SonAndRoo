@@ -39,7 +39,6 @@ public class MainActivity extends ActionBarActivity {
 	private double spentAtCafe;
 	private double spentAtIceCream;
 	private double spentAtOffice;
-	private double spentAtZoo;
 	private double spentAtSchool;
 	private double spentOnOther;
 	
@@ -115,6 +114,7 @@ public class MainActivity extends ActionBarActivity {
 		    	System.out.println("pd: " + Double.parseDouble(spentInput));
 		    	addToTotalSpent(Double.parseDouble(spentInput));
 		    	updateInBank();
+		    	tempAddition = Double.parseDouble(spentInput);
 		    	
 		    	AlertDialog.Builder placeBuild = new AlertDialog.Builder(c);
 				placeBuild.setMessage("Select the place on the map where you are spending the money.");
@@ -123,7 +123,8 @@ public class MainActivity extends ActionBarActivity {
 				    @Override
 				    public void onClick(DialogInterface dialog, int which) {
 				    	
-				    	showLocSpent(v, Double.parseDouble(spentInput));
+				    	showLocSpent(v);
+				    	
 				    }
 				});
 				
@@ -148,28 +149,90 @@ public class MainActivity extends ActionBarActivity {
 		
 		DecimalFormat df = new DecimalFormat("##.00");
 	    TextView textView = (TextView) findViewById(R.id.txtBalance);
-	    textView.setText(String.valueOf(df.format(moneyInBank)));
+	    textView.setText("Balance: " + String.valueOf(df.format(moneyInBank)));
 
 	}
 	
-	public void imgTapped(View view) {
-		ImageView img = (ImageView) findViewById(R.id.citymap);
-		img.setOnTouchListener(new View.OnTouchListener() {
+	//The following methods display the amount at each location in textViews
+	public void setFoodBalance() {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnFood);
+	    textView.setText("Spent on Food: " + String.valueOf(df.format(spentOnFood)));
 
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				showLocSpent(v, 0);
-				return true;
-			}
-			
-		});
 	}
 	
-	public void showLocSpent(View view, double addition) {
+	public void setClothesBalance() {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnClothes);
+	    textView.setText("Spent on CLothes: " + String.valueOf(df.format(spentOnClothes)));
+
+	}
+	
+	public void setFunBalance() {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentonFun);
+	    textView.setText("Spent on Fun: " + String.valueOf(df.format(spentOnFun)));
+
+	}
+	
+	public void setGasBalance() {
+		
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnGas);
+	    textView.setText("Spent on Gas: " + String.valueOf(df.format(spentOnGas)));
+
+	}
+	
+	public void setWorkBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentAtWork);
+	    textView.setText("Spent at Work: " + String.valueOf(df.format(spentAtOffice)));
+	}
+	
+	public void setParkBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentAtPark);
+	    textView.setText("Spent at Park: " + String.valueOf(df.format(spentAtPark)));
+	}
+	
+	public void setIceCreamBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnIceCream);
+	    textView.setText("Spent on IceCream: " + String.valueOf(df.format(spentAtIceCream)));
+	}
+	
+	public void setSportsBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnSports);
+	    textView.setText("Spent on Sports: " + String.valueOf(df.format(spentOnSports)));
+	}
+	
+	public void setCafeBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentAtCafe);
+	    textView.setText("Spent at Cafe: " + String.valueOf(df.format(spentAtCafe)));
+	}
+	
+	public void setSchoolBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentAtSchool);
+	    textView.setText("Spent at School: " + String.valueOf(df.format(spentAtSchool)));
+	}
+	
+	public void setOtherBalance() {
+		DecimalFormat df = new DecimalFormat("##.00");
+	    TextView textView = (TextView) findViewById(R.id.txtSpentOnIceCream);
+	    textView.setText("Spent on Other: " + String.valueOf(df.format(spentOnOther)));
+	}
+	
+	//show how much has been spent at a specific location
+	
+	public void showLocSpent(View view) {
 		
 		c = this;
-		tempAddition = addition;
 		
 		ImageView img = (ImageView) findViewById(R.id.citymap);
 		
@@ -200,7 +263,7 @@ public class MainActivity extends ActionBarActivity {
 	    		});
 	    		
 				builder.show();
-
+				tempAddition = 0;
 	    		return false;
 	            
 			
@@ -241,8 +304,6 @@ public class MainActivity extends ActionBarActivity {
 	public double chooseLocation(String name, double addition) {
 		
 		switch(name) {
-			case "at the zoo":
-				return addToZoo(addition);
 			case "on sports":
 				return addToSports(addition);
 			case "at the park":
@@ -254,14 +315,18 @@ public class MainActivity extends ActionBarActivity {
 			case "on the carnival & fun":
 				return addToFun(addition);
 			case "at the cafe & restaurant":
+				
 				return addToCafe(addition);
 			case "on food & groceries":
+				setFoodBalance();
 				return addToFood(addition);
 			case "at the ice cream shop":
 				return addToIceCream(addition);
 			case "on gas":
+				setGasBalance();
 				return addToGas(addition);
 			case "on clothes":
+				setClothesBalance();
 				return addToClothes(addition);
 		}
 		
@@ -338,11 +403,6 @@ public class MainActivity extends ActionBarActivity {
 		return spentAtOffice;
 	}
 	
-	public double addToZoo(double addition)
-	{
-		spentAtZoo = spentAtZoo + addition;
-		return spentAtZoo;
-	}
 	
 	public double addAtSchool(double addition)
 	{

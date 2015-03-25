@@ -4,9 +4,7 @@ public class CityCoordinates {
 
 	public static String getLocation(double x, double y) {
 		
-		if (isBetween(950,1180,x) && isBetween(0,425,y)) 
-			return "at the zoo";
-		else if (isBetween(630,860,x) && isBetween(0,140,y))
+		if (isBetween(630,860,x) && isBetween(0,140,y))
 			return "on sports";
 		else if((isBetween(0,560,x) && isBetween(0,115,y)) || (isBetween(0,275,x) && isBetween(0,415,y)))
 			return "at the park";

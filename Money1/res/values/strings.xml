@@ -10,5 +10,15 @@
     <string name="btnspend">btnSpend</string>
     <string name="spend_money">Spend Money</string>
     <string name="account_balance">Account Balance</string>
+    <string name="spent_on_food">Spent On Food</string>
+    <string name="spent_at_park">Spent At Park</string>
+    <string name="spent_at_cafe">Spent At Cafe</string>
+    <string name="spent_on_clothes">Spent On Clothes</string>
+    <string name="spent_at_school">Spent At School</string>
+    <string name="spent_on_ice_cream">Spent On Ice Cream</string>
+    <string name="spent_on_gas">Spent On Gas</string>
+    <string name="spent_on_fun">Spent On Fun</string>
+    <string name="spent_at_work">Spent At Work</string>
+    <string name="spent_on_sports">Spent On Sports</string>
 
 </resources>

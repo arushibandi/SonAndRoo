@@ -13,12 +13,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:clickable="true"
         android:contentDescription="@string/citymap"
         android:minHeight="440dp"
         android:minWidth="650dp"
-        android:src="@drawable/citymap"
-        android:clickable="true"
-        android:onClick="showLocSpent" />
+        android:onClick="showLocSpent"
+        android:src="@drawable/citymap" />
 
     <Button
         android:id="@+id/btnSpend"
@@ -62,5 +62,184 @@
         android:minHeight="50dp"
         android:minWidth="25dp"
         android:text="@string/account_balance" />
+
+    <EditText
+        android:id="@+id/txtSpentOnFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtBalance"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_food"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp"
+        android:enabled="false" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtSpentAtPark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentOnClothes"
+        android:layout_below="@+id/txtSpentOnClothes"
+        android:layout_marginTop="18dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_at_park"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentAtCafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentOnFood"
+        android:layout_below="@+id/txtSpentAtPark"
+        android:layout_marginTop="17dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_at_cafe"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentOnClothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/txtSpentOnFood"
+        android:layout_below="@+id/txtSpentOnFood"
+        android:layout_marginTop="22dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_clothes"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentAtSchool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentAtCafe"
+        android:layout_below="@+id/txtSpentAtCafe"
+        android:layout_marginTop="21dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_at_school"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentOnIceCream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentAtSchool"
+        android:layout_below="@+id/txtSpentAtSchool"
+        android:layout_marginTop="25dp"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_ice_cream"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentOnSports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtSpentOnFood"
+        android:layout_alignBottom="@+id/txtSpentOnFood"
+        android:layout_marginLeft="55dp"
+        android:layout_toRightOf="@+id/txtSpentOnFood"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_sports"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentOnGas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtSpentOnClothes"
+        android:layout_alignBottom="@+id/txtSpentOnClothes"
+        android:layout_alignLeft="@+id/txtSpentOnSports"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_gas"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" 
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentonFun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtSpentAtPark"
+        android:layout_alignLeft="@+id/txtSpentOnGas"
+        android:layout_alignTop="@+id/txtSpentAtPark"
+        android:background="@color/material_blue_grey_800"
+        android:ems="10"
+        android:enabled="false"
+        android:height="20dp"
+        android:inputType="numberDecimal"
+        android:text="@string/spent_on_fun"
+        android:textColor="@color/primary_material_light"
+        android:width="200dp" />
+
+    <EditText
+        android:id="@+id/txtSpentAtWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentonFun"
+        android:layout_alignTop="@+id/txtSpentAtCafe"
+        android:ems="10"
+        android:text="@string/spent_at_work"
+        android:height="20dp"
+        android:inputType="numberDecimal" 
+        android:textColor="@color/primary_material_light"
+        android:width="200dp"
+        android:background="@color/material_blue_grey_800"
+        android:enabled="false"/>
+
+    <EditText
+        android:id="@+id/txtSpentOnOther"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtSpentAtWork"
+        android:layout_alignTop="@+id/txtSpentAtSchool"
+        android:ems="10"
+        android:text="Spent On Other:" 
+        android:height="20dp"
+        android:inputType="numberDecimal" 
+        android:textColor="@color/primary_material_light"
+        android:width="200dp"
+        android:background="@color/material_blue_grey_800"
+        android:enabled="false"/>
 
 </RelativeLayout>
